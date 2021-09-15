@@ -43,7 +43,7 @@ iframe {
 
 ul {
   list-style-type: none;
-  text-align: left;
+  text-align: center;
   font-size: 15px;
   padding: 3px;
   margin-bottom: 10px;
@@ -61,7 +61,7 @@ ul > p {
 }
 
 ul > li {
-  width: 40%;
+  width: 20%;
   display: inline-block;
   margin-left: 5px;
   margin-bottom: 5px;
@@ -70,10 +70,13 @@ ul > li {
 
 .draw-buttons,
 #guesses {
+    margin:auto;
   text-align: center;
 }
 
 .draw-buttons {
+    margin:auto;
+    text-align: center;
   height: 35px;
   display: flex;
   position: relative;
