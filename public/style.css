@@ -140,10 +140,10 @@ h1 {
 }
 
 #guess > .submit-guess-input {
-    height: 30px;
-    width: 100%;
-    margin-top: 10px;
-    cursor:pointer;
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .draw > p {
