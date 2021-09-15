@@ -5,7 +5,7 @@
 body {
   color: #2f4f4f;
   background-color: #f6f9ed;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0px;
   font-family: Helvetica;
 }
@@ -17,7 +17,6 @@ body {
   text-align: center;
 }
 
-.users,
 canvas,
 #guess,
 .draw {
@@ -25,12 +24,10 @@ canvas,
 }
 
 .users {
-  background-color: white;
   width: 90%;
   margin: auto;
   text-align: center;
   border-radius: 5px;
-  margin-top: 40px;
   padding: 5px;
 }
 
@@ -45,7 +42,7 @@ ul {
   display: none;
   list-style-type: none;
   text-align: center;
-  font-size: 15px;
+  font-size: 10px;
   padding: 3px;
   margin-bottom: 10px;
   margin-top: 0px;
@@ -71,16 +68,17 @@ ul > li {
 
 .draw-buttons,
 #guesses {
-    margin:auto;
   text-align: center;
 }
 
 .draw-buttons {
-    margin:auto;
-    text-align: center;
   height: 35px;
   display: flex;
   position: relative;
+  left: 7%;
+  margin-top: -45px;
+  float: left;
+  letter-spacing: 5px;
 }
 
 #guesses {
@@ -89,14 +87,16 @@ ul > li {
 }
 
 button {
-  width: 10%;
+  width: 30px;
   height: 20px;
   display: inline-block;
-  border-radius: 8px;
+  border-radius: 20px;
+  border: 1px solid #000000;
+  cursor: pointer;
 }
 
 h1 {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: #ffffff;
   font-size: 30px;
   margin: 0 0 1px 0;
@@ -181,27 +181,33 @@ canvas {
 
 .black {
   background-color: #000000;
+  margin-right: 2px;
 }
 
 .blue {
   background-color: #0000ee;
+  margin-right: 2px;
 }
 
 .green {
   background-color: #66cd00;
+  margin-right: 2px;
 }
 
 .red {
   background-color: #ff0000;
+  margin-right: 2px;
 }
 
 .yellow {
   background-color: #ffff00;
+  margin-right: 2px;
 }
 
 .clear,
 .white {
   background-color: white;
+  margin-right: 2px;
 }
 
 .grey-out {
@@ -230,7 +236,7 @@ canvas {
 
 #username {
   width: 90%;
-  font-size: 30px;
+  font-size: 16px;
   padding: 5px;
   margin: 10px;
 }
@@ -251,29 +257,28 @@ canvas {
 }
 
 #players {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
-    
-#players td, #players th {
-    border: 1px solid #ddd;
-    padding: 8px;
+
+#players td,
+#players th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
-    
+
 #players tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 #players tr:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 #players th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04aa6d;
+  color: white;
 }
-
