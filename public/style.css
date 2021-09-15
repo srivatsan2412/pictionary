@@ -5,7 +5,7 @@
 body {
   color: #2f4f4f;
   background-color: #f6f9ed;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0px;
   font-family: Helvetica;
 }
@@ -42,7 +42,7 @@ ul {
   display: none;
   list-style-type: none;
   text-align: center;
-  font-size: 15px;
+  font-size: 10px;
   padding: 3px;
   margin-bottom: 10px;
   margin-top: 0px;
@@ -236,7 +236,7 @@ canvas {
 
 #username {
   width: 90%;
-  font-size: 20px;
+  font-size: 16px;
   padding: 5px;
   margin: 10px;
 }
