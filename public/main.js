@@ -1,5 +1,9 @@
 var socket = io();
 var user;
+var userSuccessCount = 0;
+var counter = 60;
+var myTime = $('#timer');
+var Interval;
 var userPoints = {}
 
 function usernameAsk() {
@@ -60,9 +64,35 @@ var guesser = function() {
     });
 };
 
+var showCompleted = function(data){
+    $('#guess').hide();
+    $('#completed').show();
+}
+
+var reverseShowCompleted = function(data){
+    $('#guess').show();
+    $('#completed').hide();
+}
+
+var guessword = function(data){
+    if(data.guessword != $('span.word').text())
+    {
+        $('#guesses').text(data.username + "'s guess: " + data.guessword);
+    }
+    if(click == true && data.guessword == $('span.word').text() && userSuccessCount+2<users.length)
+    {
+        socket.emit('completed user', {from: user, to: data.username});
+        userSuccessCount+=1;
+        return;
+    }
+    else if(click == true && data.guessword == $('span.word').text() && userSuccessCount+2==users.length)
+    {
+        socket.emit('completed all user', {from: user, to: data.username});
+        userSuccessCount=0;
+    }
+
 var guessword = function(data) {
     $('#guesses').text(data.username + "'s guess: " + data.guessword);
-
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
         socket.emit('correct answer', {username: data.username, guessword: data.guessword});
@@ -73,14 +103,45 @@ var guessword = function(data) {
                 index = (i+1)%users.length;
             }
         }
+        clearInterval(Interval);
+        resetCounter();
         socket.emit('swap rooms', {from: user, to: users[index]});
         click = false;
     }
 };
 
+ function callCountDown(){
+    counter-=1;
+    console.log(counter);
+    $('#timer').html('<p>' + counter + ' Second Remaining!' + '</p>');
+    if(counter == 0){
+        clearInterval(Interval);
+        resetCounter();
+        $('#guesses').html('<p>' + 'Correct Answer Is: ' + ' draw-word: ' + $('span.word').text() + '</p>');
+        var index = 0;
+        socket.emit('completed all user', {from: user});
+        userSuccessCount=0;
+        for(var i =0 ; i<users.length;i++)
+        {
+            if(users[i]==user){
+                index = (i+1)%users.length;
+            }
+        }
+        socket.emit('swap rooms', {from: user, to: users[index]});
+        click = false;
+    }
+}
+
+function resetCounter(){
+    counter = 60;
+    $('#timer').hide();
+}
+
 var drawWord = function(word) {
     $('span.word').text(word);
     console.log('Your word to draw is: ' + word);
+    $('#timer').show();
+    Interval = setInterval(callCountDown,1000);
 };
 
 var users = [];
@@ -171,6 +232,8 @@ var pictionary = function() {
 
     $('.users').on('dblclick', 'li', function() {
         if (click == true) {
+            clearInterval(Interval);
+            resetCounter();
             var target = $(this).text();
             socket.emit('swap rooms', {from: user, to: target});
         };
@@ -215,5 +278,7 @@ $(document).ready(function() {
     socket.on('correct answer', correctAnswer);
     socket.on('reset', reset);
     socket.on('clear screen', clearScreen);
+    socket.on('show Completed', showCompleted);
+    socket.on('reverse show Completed', reverseShowCompleted);
 
 });

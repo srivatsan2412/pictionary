@@ -133,6 +133,20 @@ io.on('connection', function (socket) {
 	
 	});
 
+	socket.on('completed user', function(data){
+		io.in(data.to).emit('show Completed', data.to);
+	})
+
+	socket.on('completed all user', function(data){
+		for(var i = 0;i < users.length; i++)
+		{
+			if(users[i]!=data.from)
+			{
+				io.in(users[i]).emit('reverse show Completed', users[i]);
+			}
+		}
+	})
+
 	// initiated from drawer's 'dblclick' event in Player list
 	socket.on('swap rooms', function(data) {
 
