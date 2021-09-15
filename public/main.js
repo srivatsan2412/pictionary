@@ -1,5 +1,6 @@
 var socket = io();
 var user;
+var userPoints = {}
 
 function usernameAsk() {
     $('.grey-out').fadeIn(500);
@@ -19,7 +20,8 @@ function usernameAsk() {
             return false
         };
         
-        socket.emit('join', user);
+        userPoints[user] = 0;
+        socket.emit('join', {username: user, userPoints: userPoints});
         $('.grey-out').fadeOut(300);
         $('.user').fadeOut(300);
         $('input.guess-input').focus();
@@ -58,7 +60,7 @@ var guesser = function() {
     });
 };
 
-var guessword = function(data){
+var guessword = function(data) {
     $('#guesses').text(data.username + "'s guess: " + data.guessword);
 
     if (click == true && data.guessword == $('span.word').text() ) {
@@ -83,13 +85,27 @@ var drawWord = function(word) {
 
 var users = [];
 
-var userlist = function(names) {
-    users = names;
-    var html = '<p class="chatbox-header">' + 'Players' + '</p>';
-    for (var i = 0; i < names.length; i++) {
-        html += '<li>' + names[i] + '</li>';
-    };
-    $('ul').html(html);
+var userlist = function(data) {
+    users = data.names;
+    if(data.names){
+        var html = '<p class="chatbox-header">' + 'Players' + '</p>';
+        for (var i = 0; i < data.names.length; i++) {
+            html += '<li>' + data.names[i] + '</li>';
+        };
+        $('ul').html(html);
+        
+        userPoints = data.userPoints;
+        var leaderHtml = ' <h3> ' + 'Leader Board' + '</h3>' ; 
+        leaderHtml+= '<table> <tr> <th>'+  'Player' + '</th> <th>' + 'Score' + '</th> </tr>'
+        for (var i = 0; i < data.names.length; i++) {
+            leaderHtml += '<tr> <td>' + data.names[i] + ' </td> <td>' + userPoints[data.names[i]] + '</td> </tr>';
+        };
+        leaderHtml += '</table>'
+        $('#leaderboard').html(leaderHtml)
+        $('#leaderboard table').attr('id', 'players');
+
+    }
+    
 };
 
 var newDrawer = function() {
@@ -100,6 +116,17 @@ var newDrawer = function() {
 
 var correctAnswer = function(data) {
     $('#guesses').html('<p>' + data.username + ' guessed correctly!' + '</p>');
+
+    var sortedUsers = Object.entries(data.userPoints).sort((a,b)=> b[1]-a[1]);
+    var leaderHtml = ' <h3> ' + 'Leader Board' + '</h3>' ; 
+    leaderHtml+= '<table > <tr> <th>'+  'Player' + '</th> <th>' + 'Score' + '</th> </tr>'
+   
+    for (var i = 0; i < sortedUsers.length; i++) {
+        leaderHtml += '<tr> <td>' + sortedUsers[i][0] + ' </td> <td>' + sortedUsers[i][1] + '</td> </tr>';
+    };
+    leaderHtml += '</table>'
+    $('#leaderboard').html(leaderHtml)
+    $('#leaderboard > table').attr('id', 'players');
 };
 
 var reset = function(name) {
