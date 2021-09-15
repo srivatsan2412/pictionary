@@ -9,6 +9,7 @@ var server = http.Server(app);
 var io = socket_io(server);
 
 var users = [];
+var userPoints = {};
 
 var words = [
     "word", "letter", "number", "person", "pen", "police", "people",
@@ -34,19 +35,19 @@ function newWord() {
 var wordcount;
 
 io.on('connection', function (socket) {
-	io.emit('userlist', users);
-
-	socket.on('join', function(name) {
-		socket.username = name;
-
+	io.emit('userlist', {names: users, userPoints: userPoints});
+	
+	socket.on('join', function(data) {
+		socket.username = data.username;
 		// user automatically joins a room under their own name
-		socket.join(name);
+		socket.join(data.username);
 		console.log(socket.username + ' has joined. ID: ' + socket.id);
 
 		// save the name of the user to an array called users
 		users.push(socket.username);
 		users.sort();
 
+		Object.assign(userPoints, data.userPoints);
 		// if the user is first to join OR 'drawer' room has no connections
 		if (users.length == 1 || typeof io.sockets.adapter.rooms['drawer'] === 'undefined') {
 
@@ -75,8 +76,7 @@ io.on('connection', function (socket) {
 		}
 	
 		// update all clients with the list of users
-		io.emit('userlist', users);
-		
+		io.emit('userlist', {names: users, userPoints: userPoints});
 	});
 
 	// submit drawing on canvas to other clients
@@ -168,7 +168,8 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('correct answer', function(data) {
-		io.emit('correct answer', data);
+		userPoints[data.username]++;
+		io.emit('correct answer', {username: data.username, guessword: data.guessword, names: users, userPoints: userPoints});
 		console.log(data.username + ' guessed correctly with ' + data.guessword);
 	});
 
