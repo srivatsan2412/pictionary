@@ -6,6 +6,8 @@ var myTime = $('#timer');
 var Interval;
 var userPoints = {}
 
+var app = new window.Webex.Application();
+
 function usernameAsk() {
     $('.grey-out').fadeIn(500);
     $('.user').fadeIn(500);
@@ -26,6 +28,10 @@ function usernameAsk() {
         
         userPoints[user] = 0;
         socket.emit('join', {username: user, userPoints: userPoints});
+        var url = window.location.origin;
+        app.setShareUrl(url);
+        console.log("url set: " + url);
+    
         $('.grey-out').fadeOut(300);
         $('.user').fadeOut(300);
         $('input.guess-input').focus();
