@@ -117,10 +117,20 @@ h1 {
 }
 
 #guess>.guess-input {
+    float: left;
     height: 30px;
     width: 40%;
-    padding: 3px 5px;
+    padding: 5px 5px;
     font-size: 20px;
+}
+
+#guess>.submit-guess-input{
+    height: 30px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    cursor:pointer;
 }
 
 .draw>p {
