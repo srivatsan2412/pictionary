@@ -45,6 +45,7 @@ io.on('connection', function (socket) {
 
 		// save the name of the user to an array called users
 		users.push(socket.username);
+		users.sort();
 
 		// if the user is first to join OR 'drawer' room has no connections
 		if (users.length == 1 || typeof io.sockets.adapter.rooms['drawer'] === 'undefined') {
@@ -97,6 +98,7 @@ io.on('connection', function (socket) {
 				users.splice(i, 1);
 			};
 		};
+		users.sort();
 		console.log(socket.username + ' has disconnected.');
 
 		// submit updated users list to all clients

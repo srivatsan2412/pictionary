@@ -64,7 +64,14 @@ var guessword = function(data){
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
         socket.emit('correct answer', {username: data.username, guessword: data.guessword});
-        socket.emit('swap rooms', {from: user, to: data.username});
+        var index = 0;
+        for(var i =0 ; i<users.length;i++)
+        {
+            if(users[i]==user){
+                index = (i+1)%users.length;
+            }
+        }
+        socket.emit('swap rooms', {from: user, to: users[index]});
         click = false;
     }
 };
