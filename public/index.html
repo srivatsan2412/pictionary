@@ -33,6 +33,15 @@
   <h1>Pictionary</h1>
   <div class="row">
     <canvas id="canvas"></canvas>
+    <div class="draw-buttons">
+      <button value="0" class="clear" type="button">X</button>
+      <button value="#000000" class="black" type="button"></button>
+      <button value="#0000EE" class="blue" type="button"></button>
+      <button value="#66CD00" class="green" type="button"></button>
+      <button value="#FF0000" class="red" type="button"></button>
+      <button value="#FFFF00" class="yellow" type="button"></button>
+      <button value="white" class="white" type="button"></button>
+    </div>
   </div>
   <div id="top-message">
     <div class="draw hidden">
@@ -45,7 +54,7 @@
       </button>
     </form>
     <div id="completed" class="hidden">
-        <p>You Guessed it Right!</p>
+      <p>You Guessed it Right!</p>
     </div>
     <p id="timer"></p>
   </div>
@@ -54,14 +63,5 @@
     <div id="guesses"></div>
     <div id="leaderboard"></div>
     <br />
-    <div class="draw-buttons">
-      <button value="0" class="clear" type="button">X</button>
-      <button value="#000000" class="black" type="button"></button>
-      <button value="#0000EE" class="blue" type="button"></button>
-      <button value="#66CD00" class="green" type="button"></button>
-      <button value="#FF0000" class="red" type="button"></button>
-      <button value="#FFFF00" class="yellow" type="button"></button>
-      <button value="white" class="white" type="button"></button>
-    </div>
   </div>
 </div>
