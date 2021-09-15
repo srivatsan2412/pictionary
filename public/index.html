@@ -1,11 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <title>Pictionary</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
 
 <!-- CSS -->
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="style.css" />
 
 <!-- JS -->
 <script src="//code.jquery.com/jquery-2.1.0.js"></script>
@@ -13,38 +15,48 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="main.js"></script>
 
-
 <div class="grey-out hidden">
-    <form class="user"><label for="username">Enter a nickname </label><input id="username" type="text" placeholder="Bob Ross" maxlength="14" autofocus>
+  <form class="user">
+    <label for="username">Enter a nickname </label
+    ><input
+      id="username"
+      type="text"
+      placeholder="Bob Ross"
+      maxlength="14"
+      autofocus
+    />
     <button type="submit" id="submitname">Submit</button>
-    </form>
+  </form>
 </div>
 
 <div id="main">
-    <h1>Pictionary</h1>
-        <div class="row">
-            <canvas id="canvas"></canvas><div class="users"><ul></ul>
-            <div id="guesses"></div>
-            <div class="draw-buttons">
-                <button value="0" class="clear" type="button">X</button>
-                <button value="#000000" class="black" type="button"></button>
-                <button value="#0000EE" class="blue" type="button"></button>
-                <button value="#66CD00" class="green" type="button"></button>
-                <button value="#FF0000" class="red" type="button"></button>
-                <button value="#FFFF00" class="yellow" type="button"></button>
-                <button value="white" class="white" type="button"></button>
-
-            </div>
-             </div>
-        </div>
-    <div id="top-message">
-        <div class="draw hidden" >
-            <p>The secret word is: <span class="word"></span></p>
-        </div>
-        <form id="guess" class="hidden" >
-            <label name="guess">Guess the word!</label>
-            <input name="guess" class="guess-input" type="text">
-            <button type="submit" class="submit-guess-input button" id="guess">Submit</button>
-        </form> 
+  <h1>Pictionary</h1>
+  <div class="row">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div id="top-message">
+    <div class="draw hidden">
+      <p>The secret word is: <span class="word"></span></p>
     </div>
+    <form id="guess" class="hidden">
+      <input name="guess" class="guess-input" type="text" /><br />
+      <button type="submit" class="submit-guess-input button" id="guessButton">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="users">
+    <ul></ul>
+    <div id="guesses"></div>
+    <br />
+    <div class="draw-buttons">
+      <button value="0" class="clear" type="button">X</button>
+      <button value="#000000" class="black" type="button"></button>
+      <button value="#0000EE" class="blue" type="button"></button>
+      <button value="#66CD00" class="green" type="button"></button>
+      <button value="#FF0000" class="red" type="button"></button>
+      <button value="#FFFF00" class="yellow" type="button"></button>
+      <button value="white" class="white" type="button"></button>
+    </div>
+  </div>
 </div>

@@ -1,232 +1,249 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    color: #2F4F4F;
-    background-color: #F6F9ED;
-    font-size: 1.5em;
-    margin: 0px;
-    min-width: 1000px;
-    font-family: Helvetica;
+  color: #2f4f4f;
+  background-color: #f6f9ed;
+  font-size: 1.5em;
+  margin: 0px;
+  font-family: Helvetica;
 }
 
 .row {
-    height: 525px;
-    width: 100%; 
-    position: relative;
-    text-align: center;
+  height: 525px;
+  width: 100%;
+  position: relative;
+  text-align: center;
 }
 
-.users, canvas, #guess, .draw {
-    border: 1px solid #76EEC6;
+.users,
+canvas,
+#guess,
+.draw {
+  border: 1px solid #76eec6;
 }
 
 .users {
-    display: inline-block;
-    background-color: white;
-    width: 25%;
-    height: 505px;
-    margin: 10px 10px;
-    padding: 10px;
-    vertical-align: top;
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 40px;
+  padding: 5px;
 }
 
 iframe {
-    display: inline-block;
-    width: 95%;
-    height: 200px;
-    margin-left: 7px;
+  display: inline-block;
+  width: 95%;
+  height: 200px;
+  margin-left: 7px;
 }
 
 ul {
-    list-style-type: none;
-    text-align: left;
-    font-size: 15px;
-    padding: 3px;
-    margin: 0 0;
-    height: 205px;
-
+  list-style-type: none;
+  text-align: center;
+  font-size: 15px;
+  padding: 3px;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
-ul>p {
-    font-weight: bold;
-    margin: 10px 0;
+ul > p {
+  font-weight: bold;
+  margin: 10px 0;
 }
 
-#guesses>p {
-    margin: 1px 0;
-    padding: 2px;
+#guesses > p {
+  margin: 1px 0;
+  padding: 2px;
 }
 
-ul>li {
-    width: 40%;
-    display: inline-block;
-    left-margin: -15px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    word-wrap: break-word;
+ul > li {
+  width: 20%;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
 }
 
-.draw-buttons, #guesses {
-    text-align: center;
-    margin-bottom: 5px;
+.draw-buttons,
+#guesses {
+    margin:auto;
+  text-align: center;
 }
 
 .draw-buttons {
-    height: 35px;
-    display: flex;
-    top: 14rem;
-    position: relative;
+    margin:auto;
+    text-align: center;
+  height: 35px;
+  display: flex;
+  position: relative;
 }
 
 #guesses {
-    font-style: italic;
-    font-size: 16px;
-    height: 28px;
+  font-style: italic;
+  font-size: 16px;
 }
 
 button {
-    width: 10%;
-    height: 20px;
-    display: inline-block;
-    border-radius: 8px;
+  width: 10%;
+  height: 20px;
+  display: inline-block;
+  border-radius: 8px;
 }
 
 h1 {
-    background-color: #66CDAA;
-    font-size: 30px;
-    margin:  0 0 1px 0;
-    padding: 10px 40px;
-    text-align: center;
-}
-
-#guess, .draw {
-    background-color: white;
-    border-radius: 5px;
-    display: block;
-    margin: auto;
-    width: 950px; 
-    height: 55px;
-
-}
-
-#guess label{
-    position: relative;
-    left: 2rem;
-    top: 0.2rem;
-}
-
-.draw {
-    padding-left: 10px 25px;
+  background-color: #66cdaa;
+  font-size: 30px;
+  margin: 0 0 1px 0;
+  padding: 10px 40px;
+  text-align: center;
 }
 
 #guess {
-    padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  left: 20px;
+  padding-left: 20px;
 }
 
-#guess>.guess-input {
-    float: left;
-    height: 30px;
-    width: 40%;
-    padding: 5px 5px;
-    font-size: 20px;
+.draw {
+  background-color: white;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  left: 20px;
+  padding-left: 20px;
+  text-align: center;
 }
 
-#guess>.submit-guess-input{
-    height: 30px;
-    width: 100px;
-    margin-left: 10px;
-    margin-right: 10px;
-    float: left;
-    cursor:pointer;
+#guess label {
+  position: relative;
+  left: 2rem;
+  top: 0.2rem;
 }
 
-.draw>p {
-    margin: 15px;
+.draw {
+  padding-left: 10px 25px;
+}
+
+#guess {
+  padding: 10px;
+}
+
+#guess > .guess-input {
+  padding: 5px 5px;
+  font-size: 20px;
+  width: 100%;
+  left: 30px;
+}
+
+#guess > .submit-guess-input {
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.draw > p {
+  margin: 15px;
 }
 
 span.word {
-	font-weight: bolder;
-	color: #228B22;
+  font-weight: bolder;
+  color: #228b22;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 #top-message {
-    height: 70px;
-    padding: 5px 0px;
+  text-align: center;
+  margin: auto;
+  width: 90%;
 }
 
 canvas {
-    width: 685px;
-    height: 505px;
-    background-color: white;
-    display: inline-block;
-    margin: 10px auto;
-    cursor: pointer;
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  display: inline-block;
+  margin: 10px auto;
+  cursor: pointer;
 }
 
 .black {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 .blue {
-    background-color: #0000EE;
+  background-color: #0000ee;
 }
 
 .green {
-    background-color: #66CD00;
+  background-color: #66cd00;
 }
 
 .red {
-    background-color: #FF0000;
+  background-color: #ff0000;
 }
 
 .yellow {
-    background-color: #FFFF00;
+  background-color: #ffff00;
 }
 
-.clear, .white {
-    background-color: white;
+.clear,
+.white {
+  background-color: white;
 }
 
 .grey-out {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: #4A4A4A;
-    opacity: .8;
-    display: none;
-    z-index: 900;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #4a4a4a;
+  opacity: 0.8;
+  display: none;
+  z-index: 900;
 }
 
 .user {
-    position: relative;
-    background-color: white;
-    max-height: 300px;
-    max-width: 300px;
-    text-align: center;
-    padding: 25px 5px;
-    top: 20%;
-    margin: auto;
-    border-radius: 6px;
+  position: relative;
+  background-color: white;
+  max-height: 300px;
+  max-width: 300px;
+  text-align: center;
+  padding: 25px 5px;
+  top: 20%;
+  margin: auto;
+  border-radius: 6px;
 }
 
 #username {
-    width: 90%;
-    font-size: 30px;
-    padding: 5px;
-    margin: 10px;
+  width: 90%;
+  font-size: 30px;
+  padding: 5px;
+  margin: 10px;
 }
 
 #submitname {
-    width: 70px;
-    height: 30px;
-    background-color: #9BCD9B;
+  width: 70px;
+  height: 30px;
+  background-color: #9bcd9b;
 }
 
+#guessButton {
+  border: 1px solid #76eec6;
+  background-color: white;
+  display: block;
+  margin: auto;
+  padding-left: 20px;
+  padding: 10px;
+}
