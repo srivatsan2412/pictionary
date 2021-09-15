@@ -90,8 +90,6 @@ var guessword = function(data){
         socket.emit('completed all user', {from: user, to: data.username});
         userSuccessCount=0;
     }
-
-var guessword = function(data) {
     $('#guesses').text(data.username + "'s guess: " + data.guessword);
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
