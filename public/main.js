@@ -80,12 +80,16 @@ var reverseShowCompleted = function(data){
     $('#completed').hide();
 }
 
+var showGuessWord = function(data){
+    $('#guesses').text(data.username + "'s guess: " + data.guessword);
+}
+
 var guessword = function(data){
-    if(data.guessword != $('span.word').text())
+    if(click==true && data.guessword != $('span.word').text())
     {
-        $('#guesses').text(data.username + "'s guess: " + data.guessword);
+        socket.emit('show Guess Word', data);
     }
-    if(click == true && data.guessword == $('span.word').text() && userSuccessCount+2<users.length)
+    else if(click == true && data.guessword == $('span.word').text() && userSuccessCount+2<users.length)
     {
         socket.emit('completed user', {from: user, to: data.username});
         userSuccessCount+=1;
@@ -96,7 +100,6 @@ var guessword = function(data){
         socket.emit('completed all user', {from: user, to: data.username});
         userSuccessCount=0;
     }
-    $('#guesses').text(data.username + "'s guess: " + data.guessword);
     if (click == true && data.guessword == $('span.word').text() ) {
         console.log('guesser: ' + data.username + ' draw-word: ' + $('span.word').text());
         socket.emit('correct answer', {username: data.username, guessword: data.guessword});
@@ -115,24 +118,27 @@ var guessword = function(data){
 };
 
  function callCountDown(){
-    counter-=1;
-    console.log(counter);
-    $('#timer').html('<p>' + counter + ' Second Remaining!' + '</p>');
-    if(counter == 0){
-        clearInterval(Interval);
-        resetCounter();
-        $('#guesses').html('<p>' + 'Correct Answer Is: ' + ' draw-word: ' + $('span.word').text() + '</p>');
-        var index = 0;
-        socket.emit('completed all user', {from: user});
-        userSuccessCount=0;
-        for(var i =0 ; i<users.length;i++)
-        {
-            if(users[i]==user){
-                index = (i+1)%users.length;
+    if(click)
+    {
+        counter-=1;
+        console.log(counter);
+        $('#timer').html('<p>' + counter + ' Second Remaining!' + '</p>');
+        if(counter == 0){
+            clearInterval(Interval);
+            resetCounter();
+            $('#guesses').html('<p>' + 'Correct Answer Is: ' + ' draw-word: ' + $('span.word').text() + '</p>');
+            var index = 0;
+            socket.emit('completed all user', {from: user});
+            userSuccessCount=0;
+            for(var i =0 ; i<users.length;i++)
+            {
+                if(users[i]==user){
+                    index = (i+1)%users.length;
+                }
             }
+            socket.emit('swap rooms', {from: user, to: users[index]});
+            click = false;
         }
-        socket.emit('swap rooms', {from: user, to: users[index]});
-        click = false;
     }
 }
 
@@ -284,5 +290,6 @@ $(document).ready(function() {
     socket.on('clear screen', clearScreen);
     socket.on('show Completed', showCompleted);
     socket.on('reverse show Completed', reverseShowCompleted);
+    socket.on('show guesses', showGuessWord);
 
 });
