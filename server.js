@@ -91,6 +91,8 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('disconnect', function() {
+		console.log("Disconnected: ", socket.username)
+		console.log("Users: ", users);
 		for (var i = 0; i < users.length; i++) {
 
 			// remove user from users list
@@ -99,10 +101,11 @@ io.on('connection', function (socket) {
 			};
 		};
 		users.sort();
+		console.log("Users: ", users);
 		console.log(socket.username + ' has disconnected.');
 
 		// submit updated users list to all clients
-		io.emit('userlist', users);
+		io.emit('userlist', {names: users, userPoints: userPoints});
 
 		// if 'drawer' room has no connections..
 		if ( typeof io.sockets.adapter.rooms['drawer'] === "undefined") {
@@ -144,6 +147,13 @@ io.on('connection', function (socket) {
 			{
 				io.in(users[i]).emit('reverse show Completed', users[i]);
 			}
+		}
+	})
+
+	socket.on('show Guess Word', function(data){
+		for(var i = 0;i < users.length; i++)
+		{
+			io.in(users[i]).emit('show guesses', {username: data.username, guessword: data.guessword});
 		}
 	})
 
